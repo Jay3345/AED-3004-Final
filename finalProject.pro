@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     AED.cpp \
+    AEDSpeaker.cpp \
     Patient.cpp \
     User.cpp \
     main.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     AED.h \
+    AEDSpeaker.h \
     Patient.h \
     User.h \
     mainwindow.h
