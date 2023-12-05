@@ -5,6 +5,7 @@
 using namespace std;
 
 class Patient{
+
 public:
     Patient();
     void isResponsive();

@@ -5,6 +5,7 @@
 #include "Patient.h"
 
 class User{
+
 public:
     User();
     void powerOn();
@@ -12,6 +13,7 @@ public:
     void placeElectrodes();
     void performCPR();
     void continueEvaluation();
+
 private:
     AED aed;
     Patient patient;
