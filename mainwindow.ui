@@ -102,7 +102,7 @@
        <rect>
         <x>10</x>
         <y>30</y>
-        <width>111</width>
+        <width>261</width>
         <height>41</height>
        </rect>
       </property>
@@ -111,16 +111,6 @@
       </property>
      </widget>
     </widget>
-   </widget>
-   <widget class="QGraphicsView" name="ECGDisplay">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>100</y>
-      <width>311</width>
-      <height>71</height>
-     </rect>
-    </property>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
@@ -180,6 +170,19 @@
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QLabel" name="ECGLabel">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>80</y>
+      <width>451</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
