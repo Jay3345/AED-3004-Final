@@ -8,10 +8,10 @@ Jacob Lane, JACOBLANE@cmail.carleton.ca
 - State Diagram
   
 Keegan Ramjit, KeeganRamjit@cmail.carleton.ca
-- Use cases 2-8
+- Use cases 2,3
   
 Rafeed Nazmul, RAFEEDBINNAZMUL@cmail.carleton.ca
-- Use cases 2-8
+- Use cases 4-8
 
 
 
