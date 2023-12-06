@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPixmap>
 #include "AED.h"
+#include "User.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -20,8 +21,10 @@ public:
 
     void ECGDisplay(int testCase);
     void powerButtonClicked();
+    void attachPadsClicked();
 private:
     Ui::MainWindow *ui;
     AED *aed;
+
 };
 #endif // MAINWINDOW_H
