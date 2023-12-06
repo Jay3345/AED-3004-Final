@@ -23,8 +23,11 @@
       <height>391</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(87, 227, 137);</string>
+    </property>
     <property name="title">
-     <string>AED</string>
+     <string>AED Plus</string>
     </property>
     <widget class="QPushButton" name="shockButton">
      <property name="geometry">
@@ -34,6 +37,9 @@
        <width>83</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(53, 132, 228);</string>
      </property>
      <property name="text">
       <string>Shock</string>
@@ -51,6 +57,9 @@
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="powerButton">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(224, 27, 36);</string>
+        </property>
         <property name="text">
          <string>Power On</string>
         </property>
@@ -105,6 +114,9 @@
         <width>261</width>
         <height>41</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(246, 245, 244);</string>
       </property>
       <property name="text">
        <string>TextLabel</string>

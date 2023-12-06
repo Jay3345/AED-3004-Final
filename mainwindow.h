@@ -22,9 +22,13 @@ public:
     void ECGDisplay(int testCase);
     void powerButtonClicked();
     void attachPadsClicked();
+    void shockClicked();
+    void shaveClicked();
+    void cprClicked();
 private:
     Ui::MainWindow *ui;
     AED *aed;
+    User *user;
 
 };
 #endif // MAINWINDOW_H

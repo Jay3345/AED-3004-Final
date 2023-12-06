@@ -12,7 +12,10 @@ MainWindow::MainWindow(QWidget *parent)
     ECGDisplay(0);
     aed= new AED(ui->AEDDisplayLabel, ui->powerButton);
     connect(ui->powerButton, &QPushButton::clicked, this, &MainWindow::powerButtonClicked);
-   // connect(ui->attachPadsButton, &QPushButton::clicked, this, &MainWindow::attachPadsClicked);
+    connect(ui->attachPadsButton, &QPushButton::clicked, this, &MainWindow::attachPadsClicked);
+    connect(ui->shockButton, &QPushButton::clicked, this, &MainWindow::shockClicked);
+    connect(ui->shaveButton, &QPushButton::clicked, this, &MainWindow::shaveClicked);
+    connect(ui->performCPRButton, &QPushButton::clicked, this, &MainWindow::cprClicked);
 
 
 }
@@ -49,3 +52,18 @@ void MainWindow::ECGDisplay(int testCase) {
 void MainWindow::powerButtonClicked(){
     aed->powerOn();
 }
+
+
+void MainWindow::attachPadsClicked(){
+    user->placeElectrodes();
+}
+void MainWindow::shockClicked(){
+    //aed->deliverShock();
+}
+void MainWindow::shaveClicked(){
+    user->shavePatient();
+}
+void MainWindow::cprClicked(){
+    aed->powerOn();
+}
+

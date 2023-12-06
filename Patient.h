@@ -8,12 +8,21 @@ class Patient{
 
 public:
     Patient();
-    void isResponsive();
+
+    //getters
+    bool getIsHairy() const;       // Check if patient is hairy
+    bool getIsResponsive() const;  // Check if patient is responsive
+    bool getShockResult() const; // Check if shock result is available
+
+
+    //setters
+    void setHairy(bool value);         // Set hairy status
+    void setResponsive(bool value);    // Set responsive status
+    void setShockResult(bool value);   // Set shock result status
 
 private:
-    string name;
     bool isHairy;
-    bool responsive;
+    bool isResponsive;
     bool shockResult;
 
 };

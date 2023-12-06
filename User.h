@@ -7,9 +7,8 @@
 class User{
 
 public:
-    User();
-    void powerOn();
-    void shave();
+    User(AED* aed, Patient* patient);
+    void shavePatient();
     void placeElectrodes();
     void performCPR();
     void continueEvaluation();
