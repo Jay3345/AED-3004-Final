@@ -10,6 +10,7 @@ public:
     AED(QLabel* display, QPushButton* powerButton);
     void powerOn();
     void initiateSelfTest();
+    void placeElectrodes();
     void analyzeHeartRhythm();
     void deliverShock();
 
@@ -19,5 +20,6 @@ private:
     bool shockAdvised;
     QLabel* display;
     QPushButton* powerButton;
+
 };
 #endif // AED_H

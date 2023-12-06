@@ -13,3 +13,8 @@ void AED::powerOn() {
     display->setText("Power ON!");
     powerButton->setEnabled(false);
 }
+
+void AED::placeElectrodes() {
+    eletrodesPlaced=true;
+}
+

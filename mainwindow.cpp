@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     ECGDisplay(0);
     aed= new AED(ui->AEDDisplayLabel, ui->powerButton);
     connect(ui->powerButton, &QPushButton::clicked, this, &MainWindow::powerButtonClicked);
+   // connect(ui->attachPadsButton, &QPushButton::clicked, this, &MainWindow::attachPadsClicked);
+
 
 }
 
