@@ -4,66 +4,121 @@
 #include <QMovie>
 
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-{
-    ui->setupUi(this);
-    ECGDisplay(0);
-    aed= new AED(ui->AEDDisplayLabel, ui->powerButton);
-    connect(ui->powerButton, &QPushButton::clicked, this, &MainWindow::powerButtonClicked);
-    connect(ui->attachPadsButton, &QPushButton::clicked, this, &MainWindow::attachPadsClicked);
-    connect(ui->shockButton, &QPushButton::clicked, this, &MainWindow::shockClicked);
-    connect(ui->shaveButton, &QPushButton::clicked, this, &MainWindow::shaveClicked);
-    connect(ui->performCPRButton, &QPushButton::clicked, this, &MainWindow::cprClicked);
+MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
+    {
+        ui->setupUi(this);
+
+        ui->attachPadsButton->setEnabled(false);
+        ui->shockButton->setEnabled(false);
+        ui->shaveButton->setEnabled(false);
+        ui->cprButton->setEnabled(false);
+        updateECG("/home/student/AED-3004-Final/ECGImages/Dead.gif");
 
 
-}
+        patient = new Patient();
+        user = new User(patient);
+
+        speaker = new AEDSpeaker();
+        aed= new AED(speaker, user);
+
+        aedThread = new QThread();
+        aed->moveToThread(aedThread);
+
+        //------------------------TEST CASES---------------------------------
+        int chooseTestCaseNum = 4;
+        switch (chooseTestCaseNum) {
+            //Patient is not hairy, has a ventricular fibrillation(VF) heart rhythm---------------------
+            case 1:
+                patient->setHairy(false);
+                patient->setHeartRhythm(3);
+                break;
+
+            //Patient is hairy, has a ventricular tachycardia(VT) heart rhythm---------------------
+            case 2:
+                patient->setHairy(true);
+                patient->setHeartRhythm(4);
+                break;
+
+            //Patient is not hairy, has a Sinus heart rhythm ---------------------
+            case 3:
+                patient->setHairy(false);
+                patient->setHeartRhythm(2);
+                break;
+
+            //Patient is hairy, has a Asystole heart rhythm---------------------
+            case 4:
+                patient->setHairy(true);
+                patient->setHeartRhythm(1);
+                break;
+        }
+
+
+        connect(aed, &AED::updateECGDisplay, this, &MainWindow::updateECG);  //update ECG
+        connect(aed, &AED::updateAEDDisplay, this, &MainWindow::updateAED);  //update AED
+
+        connect(user, &User::updateUserButtons, this, &MainWindow::updateUser);  //update User Screen
+
+
+        //Call from buttons
+        connect(ui->powerButton, &QPushButton::clicked, aed, &AED::powerOn);
+        connect(ui->attachPadsButton, &QPushButton::clicked, aed, &AED::placeElectrodes);
+        connect(ui->shockButton, &QPushButton::clicked, aed, &AED::Shock);
+        connect(ui->shaveButton, &QPushButton::clicked, user, &User::shavePatient);
+        connect(ui->cprButton, &QPushButton::clicked, user, &User::performCPR);
+
+
+        aedThread->start();
+    }
 
 MainWindow::~MainWindow()
 {
+    delete patient;
+    delete user;
+    delete speaker;
+    delete aed;
     delete ui;
+    delete ECGgif;
 }
 
-void MainWindow::ECGDisplay(int testCase) {
-    QMovie *movie = new QMovie("/home/student/AED-3004-Final/ECGImages/Dead.gif"); // Default(FlatLine)
 
-    switch (testCase){
-        case 1: {
-            movie = new QMovie("/home/student/AED-3004-Final/ECGImages/Asystole.gif"); // Asystole Rhythm
-            break;
-        } case 2:{
-            movie = new QMovie("/home/student/AED-3004-Final/ECGImages/Sinus.gif"); // Sinus Rhythm
-            break;
-        } case 3:{
-            movie = new QMovie("/home/student/AED-3004-Final/ECGImages/VF.gif"); // VF Rhythm
-            break;
-        }case 4: {
-            movie = new QMovie("/home/student/AED-3004-Final/ECGImages/VT.gif"); // VT Rhythm
-            break;
-        }
+void MainWindow::updateECG(const QString& gifPath){
+    ECGgif = new QMovie(gifPath);
+    ui->ECGLabel->setMovie(ECGgif);
+    ECGgif->start();
+}
+
+void MainWindow::updateAED(const QString& AEDText){
+    ui->AEDDisplayLabel->setText(AEDText);
+
+
+    //Change  button visibillity conditions
+    if(AEDText == "Self Test Succesful!"){
+        ui->attachPadsButton->setEnabled(true);
     }
-
-    ui->ECGLabel->setMovie(movie);
-    ui->ECGLabel->setScaledContents(true);
-    movie->start();
+    else if(AEDText =="Power off!"){
+        ui->attachPadsButton->setEnabled(false);
+        ui->shockButton->setEnabled(false);
+        ui->shaveButton->setEnabled(false);
+        ui->cprButton->setEnabled(false);
+    }
+    else if(AEDText=="Shockable Rhythm Detected."){
+        ui->attachPadsButton->setEnabled(false);
+        ui->shockButton->setEnabled(true);
+    }
+    else if(AEDText=="Not a shockable Rhythm."){
+        ui->attachPadsButton->setEnabled(false);
+        ui->cprButton->setEnabled(true);
+    }
+    else if(AEDText=="Shock Administered"){
+        ui->shaveButton->setEnabled(false);
+    }
+    else if(AEDText=="Perform CPR"){
+        ui->cprButton->setEnabled(true);
+    }
 }
 
-void MainWindow::powerButtonClicked(){
-    aed->powerOn();
+void MainWindow::updateUser(const QString& Text){
+    if(Text == "Shave"){
+        ui->shaveButton->setEnabled(true);
+    }
 }
-
-
-void MainWindow::attachPadsClicked(){
-    user->placeElectrodes();
-}
-void MainWindow::shockClicked(){
-    //aed->deliverShock();
-}
-void MainWindow::shaveClicked(){
-    user->shavePatient();
-}
-void MainWindow::cprClicked(){
-    aed->powerOn();
-}
-

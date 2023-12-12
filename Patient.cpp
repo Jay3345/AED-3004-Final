@@ -1,11 +1,14 @@
 #include "Patient.h"
 #include <iostream>
 
-Patient::Patient() : isHairy(false), isResponsive(false), shockResult(false) {
+Patient::Patient() : isHairy(false), heartRhythm(false), isResponsive(false), shockResult(false) {
 }
 
 bool Patient::getIsHairy() const {
     return isHairy;
+}
+int Patient::getHeartRhythm() const {
+    return heartRhythm;
 }
 
 bool Patient::getIsResponsive() const {
@@ -18,6 +21,9 @@ bool Patient::getShockResult() const {
 
 void Patient::setHairy(bool value) {
     isHairy = value;
+}
+void Patient::setHeartRhythm(int value) {
+    heartRhythm = value;
 }
 
 void Patient::setResponsive(bool value) {

@@ -1,25 +1,48 @@
 #ifndef AED_H
 #define AED_H
+
+#include <QObject>
 #include <QLabel>
 #include <QPushButton>
-#include "Patient.h"
+#include <QMovie>
+#include <QTimer>
 
-class AED{
+#include <QThread>
+#include <unistd.h>
+#include "AEDSpeaker.h"
+#include "User.h"
+
+
+
+
+class AED : public QObject  {
+    Q_OBJECT
 
 public:
-    AED(QLabel* display, QPushButton* powerButton);
-    void powerOn();
+    explicit AED(AEDSpeaker* speaker, User* user, QObject *parent = nullptr);
+    void ECGDisplay(int heartRhythm);
     void initiateSelfTest();
     void placeElectrodes();
-    void analyzeHeartRhythm();
-    void deliverShock();
+    void analyzeHeartRhythm(Patient* patient);
+    void Shock();
+
+signals:
+    void updateECGDisplay(const QString &gifPath);
+    void updateAEDDisplay(const QString &aedText);
+
+
+public slots:
+    void powerOn();
+
 
 private:
     bool isOn;
-    bool eletrodesPlaced;
+    bool electrodesPlaced;
     bool shockAdvised;
-    QLabel* display;
-    QPushButton* powerButton;
+    AEDSpeaker* speaker;
+    User* user;
+
 
 };
+
 #endif // AED_H

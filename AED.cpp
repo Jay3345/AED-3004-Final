@@ -1,20 +1,80 @@
 #include "AED.h"
-#include <iostream>
 
-
-
-AED::AED(QLabel* d, QPushButton* p1) : isOn(false), eletrodesPlaced(false), shockAdvised(false) {
- display=d;
- powerButton = p1;
+AED::AED(AEDSpeaker *s, User* u, QObject *parent) : QObject(parent) {
+    isOn = false;
+    electrodesPlaced = false;
+    shockAdvised = false;
+    speaker = s;
+    user = u;
 }
 
 void AED::powerOn() {
-    isOn=true;
-    display->setText("Power ON!");
-    powerButton->setEnabled(false);
+    if(isOn==false){
+        isOn = true;
+        emit updateAEDDisplay("Power On!");
+        speaker->powerOnWarning();
+        ECGDisplay(0);
+        initiateSelfTest();
+    }
+    else if(isOn==true){
+          isOn = false;
+          emit updateAEDDisplay("Power off!");
+          ECGDisplay(0);
+    }
 }
 
+void AED::initiateSelfTest(){
+    usleep(2000000);
+    emit updateAEDDisplay("Running self test!");
+    speaker->selfTestWarning();
+    usleep(2000000);
+    emit updateAEDDisplay("Self Test Succesful!");
+}
+
+
 void AED::placeElectrodes() {
-    eletrodesPlaced=true;
+    if(user->placeElectrodes() == true){
+        analyzeHeartRhythm(user->getPatient());
+    }
+}
+
+void AED::analyzeHeartRhythm(Patient* patient){
+    emit updateAEDDisplay("Stand Clear");
+    usleep(2000000);
+    emit updateAEDDisplay("Analyzing Heart Rhythm");
+    speaker->analyzingHeartRhythm();
+    usleep(2000000);
+
+    int heartRhythm = patient->getHeartRhythm();
+    ECGDisplay(heartRhythm);
+
+
+    if(heartRhythm==1 || heartRhythm==2){
+        emit updateAEDDisplay("Not a shockable Rhythm.");
+        usleep(2000000);
+        emit updateAEDDisplay("Please Perform CPR!");
+    }
+    if(heartRhythm==3 || heartRhythm==4){
+        emit updateAEDDisplay("Shockable Rhythm Detected.");
+        speaker->shockAdvisedWarning();
+    }
+}
+
+void AED::Shock(){
+    emit updateAEDDisplay("Shock Administered");
+    ECGDisplay(2); //I don't know how this functionality should work..
+    usleep(2000000);
+    emit updateAEDDisplay("Perform CPR");
+}
+
+
+void AED::ECGDisplay(int heartRhythm) {
+    switch (heartRhythm){
+        case 0:{ emit updateECGDisplay("/home/student/AED-3004-Final/ECGImages/Dead.gif"); break; }
+        case 1:{ emit updateECGDisplay("/home/student/AED-3004-Final/ECGImages/Asystole.gif"); break; }
+        case 2:{ emit updateECGDisplay("/home/student/AED-3004-Final/ECGImages/Sinus.gif"); break; }
+        case 3:{ emit updateECGDisplay("/home/student/AED-3004-Final/ECGImages/VF.gif"); break; }
+        case 4:{ emit updateECGDisplay("/home/student/AED-3004-Final/ECGImages/VT.gif"); break; }
+    }
 }
 

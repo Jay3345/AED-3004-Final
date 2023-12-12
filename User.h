@@ -1,21 +1,30 @@
 #ifndef USER_H
 #define USER_H
 
-#include "AED.h"
+#include <QObject>
+#include <QPushButton>
 #include "Patient.h"
 
-class User{
+class User : public QObject  {
+    Q_OBJECT
 
 public:
-    User(AED* aed, Patient* patient);
+    explicit User(Patient* patient, QObject *parent = nullptr);
     void shavePatient();
-    void placeElectrodes();
+    bool placeElectrodes();
     void performCPR();
     void continueEvaluation();
 
+    Patient* getPatient();
+
+signals:
+    void updateUserButtons(const QString &text);
+
+public slots:
+
+
 private:
-    AED aed;
-    Patient patient;
+    Patient* patient;
 };
 
 #endif // USER_H

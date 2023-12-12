@@ -3,8 +3,14 @@
 
 #include <QMainWindow>
 #include <QPixmap>
+#include <QLabel>
+#include <QObject>
+#include <QThread>
+#include <QMovie>
+
 #include "AED.h"
 #include "User.h"
+#include "Patient.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -19,16 +25,19 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void ECGDisplay(int testCase);
-    void powerButtonClicked();
-    void attachPadsClicked();
-    void shockClicked();
-    void shaveClicked();
-    void cprClicked();
+    void updateECG(const QString& gifPath);
+    void updateAED(const QString& AEDText);
+    void updateUser(const QString& AEDText);
+
 private:
     Ui::MainWindow *ui;
     AED *aed;
     User *user;
+    Patient *patient;
+
+    AEDSpeaker *speaker;
+    QThread *aedThread;
+    QMovie *ECGgif;
 
 };
 #endif // MAINWINDOW_H

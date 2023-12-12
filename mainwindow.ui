@@ -106,6 +106,9 @@
      <property name="title">
       <string>Display</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
      <widget class="QLabel" name="AEDDisplayLabel">
       <property name="geometry">
        <rect>
@@ -119,7 +122,7 @@
        <string notr="true">background-color: rgb(246, 245, 244);</string>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>AED PLUS</string>
       </property>
      </widget>
     </widget>
@@ -136,6 +139,9 @@
     <layout class="QVBoxLayout" name="verticalLayout_4">
      <item>
       <widget class="QPushButton" name="attachPadsButton">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(143, 240, 164);</string>
+       </property>
        <property name="text">
         <string>Attach Pads</string>
        </property>
@@ -156,6 +162,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="shaveButton">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(205, 171, 143);</string>
+       </property>
        <property name="text">
         <string>Shave</string>
        </property>
@@ -175,7 +184,10 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="performCPRButton">
+      <widget class="QPushButton" name="cprButton">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(220, 138, 221);</string>
+       </property>
        <property name="text">
         <string>Perform CPR</string>
        </property>
