@@ -27,6 +27,8 @@ public:
 
     void updateECG(const QString& gifPath);
     void updateAED(const QString& AEDText);
+    void updateBattery(const QString& AEDText);
+
     void updateUser(const QString& AEDText);
 
 private:
