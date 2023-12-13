@@ -24,11 +24,14 @@ public:
     void initiateSelfTest();
     void placeElectrodes();
     void analyzeHeartRhythm(Patient* patient);
+    void chargeBattery();
     void Shock();
 
 signals:
     void updateECGDisplay(const QString &gifPath);
     void updateAEDDisplay(const QString &aedText);
+    void updateBatteryCharge(const QString &batteryCharge);
+
 
 
 public slots:
@@ -39,6 +42,8 @@ private:
     bool isOn;
     bool electrodesPlaced;
     bool shockAdvised;
+    int currentCharge;
+
     AEDSpeaker* speaker;
     User* user;
 
