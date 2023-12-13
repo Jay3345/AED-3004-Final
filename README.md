@@ -8,12 +8,12 @@ Jacob Lane, JACOBLANE@cmail.carleton.ca
 - State Diagram
 - AED class
 - Compression
+- Battery Charging
   
 Keegan Ramjit, KeeganRamjit@cmail.carleton.ca
 - Use cases 2,3
 - AED Speaker Class
 - Traceability Matrix
-- Battery Charging
   
 Rafeed Nazmul, RAFEEDBINNAZMUL@cmail.carleton.ca
 - Use cases 4-8
