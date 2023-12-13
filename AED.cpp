@@ -4,6 +4,7 @@ AED::AED(AEDSpeaker *s, User* u, QObject *parent) : QObject(parent) {
     isOn = false;
     electrodesPlaced = false;
     shockAdvised = false;
+    currentCharge=0;
     speaker = s;
     user = u;
 }
@@ -29,6 +30,8 @@ void AED::initiateSelfTest(){
     speaker->selfTestWarning();
     usleep(2000000);
     emit updateAEDDisplay("Self Test Succesful!");
+    chargeBattery();
+
 }
 
 
@@ -60,11 +63,26 @@ void AED::analyzeHeartRhythm(Patient* patient){
     }
 }
 
+void AED::chargeBattery(){
+    for(int i=0; i<=100; i++){
+        QString s = QString::number(i);
+        emit updateBatteryCharge(s+"%");
+        usleep(25000);
+    }
+    currentCharge=100;
+}
+
 void AED::Shock(){
-    emit updateAEDDisplay("Shock Administered");
-    ECGDisplay(2); //I don't know how this functionality should work..
-    usleep(2000000);
-    emit updateAEDDisplay("Perform CPR");
+    if (currentCharge==100){
+        emit updateAEDDisplay("Shock Administered");
+        ECGDisplay(2); //I don't know how this functionality should work..
+        usleep(2000000);
+        emit updateAEDDisplay("Perform CPR");
+        currentCharge=0;
+    }else{
+        emit updateAEDDisplay("Not enough power!");
+    }
+
 }
 
 
