@@ -55,6 +55,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
         connect(aed, &AED::updateECGDisplay, this, &MainWindow::updateECG);  //update ECG
         connect(aed, &AED::updateAEDDisplay, this, &MainWindow::updateAED);  //update AED
+        connect(aed, &AED::updateBatteryCharge, this, &MainWindow::updateBattery);
 
         connect(user, &User::updateUserButtons, this, &MainWindow::updateUser);  //update User Screen
 
@@ -115,6 +116,10 @@ void MainWindow::updateAED(const QString& AEDText){
     else if(AEDText=="Perform CPR"){
         ui->cprButton->setEnabled(true);
     }
+}
+
+void MainWindow::updateBattery(const QString& newBattery){
+    ui->batteryLabel->setText(newBattery);
 }
 
 void MainWindow::updateUser(const QString& Text){
