@@ -1,5 +1,7 @@
 # AED-3004-Final
 
+Video demo: https://youtu.be/Cja7qsSZe6Y
+
 Group: 
 Jacob Lane, JACOBLANE@cmail.carleton.ca
 - Use case 1
@@ -9,6 +11,7 @@ Jacob Lane, JACOBLANE@cmail.carleton.ca
 - AED class
 - Compression
 - Battery Charging
+- CPR compression
   
 Keegan Ramjit, KeeganRamjit@cmail.carleton.ca
 - Use cases 2,3
