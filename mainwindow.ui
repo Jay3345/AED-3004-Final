@@ -127,28 +127,18 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>200</y>
-      <width>160</width>
-      <height>241</height>
+      <x>660</x>
+      <y>170</y>
+      <width>341</width>
+      <height>311</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_4">
-     <item>
-      <widget class="QPushButton" name="attachPadsButton">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(143, 240, 164);</string>
-       </property>
-       <property name="text">
-        <string>Attach Pads</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="verticalSpacer">
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="4" column="1">
+      <spacer name="verticalSpacer_2">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
@@ -160,7 +150,7 @@
        </property>
       </spacer>
      </item>
-     <item>
+     <item row="3" column="1">
       <widget class="QPushButton" name="shaveButton">
        <property name="styleSheet">
         <string notr="true">background-color: rgb(205, 171, 143);</string>
@@ -170,7 +160,27 @@
        </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="1">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="7" column="3">
+      <widget class="QPushButton" name="CPRGoodButton">
+       <property name="text">
+        <string>Perfect Depth</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="3">
       <spacer name="verticalSpacer_4">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -183,7 +193,80 @@
        </property>
       </spacer>
      </item>
-     <item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="attachPadsButton">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(143, 240, 164);</string>
+       </property>
+       <property name="text">
+        <string>Attach Pads</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="3">
+      <widget class="QPushButton" name="detachPadsButton">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(237, 51, 59);</string>
+       </property>
+       <property name="text">
+        <string>Detach pads</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="3">
+      <widget class="QPushButton" name="CPRHardButton">
+       <property name="text">
+        <string>Too Hard</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="3">
+      <spacer name="verticalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="5" column="3">
+      <widget class="QPushButton" name="CPRLightButton">
+       <property name="text">
+        <string>Too light</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="2">
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="7" column="1">
       <widget class="QPushButton" name="cprButton">
        <property name="styleSheet">
         <string notr="true">background-color: rgb(220, 138, 221);</string>
@@ -198,10 +281,10 @@
    <widget class="QLabel" name="ECGLabel">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>80</y>
-      <width>451</width>
-      <height>101</height>
+      <x>620</x>
+      <y>40</y>
+      <width>381</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="text">

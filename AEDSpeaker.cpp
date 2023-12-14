@@ -22,3 +22,13 @@ void AEDSpeaker::analyzingHeartRhythm() {
 void AEDSpeaker::shockAdvisedWarning() {
     cout << "SPEAKER:[ SHOCK ADVISED ]"<< endl;
 }
+
+void AEDSpeaker::CPRLightWarning() {
+    cout << "SPEAKER:[ CPR TOO LIGHT ]"<< endl;
+}
+void AEDSpeaker::CPRHeavyWarning() {
+    cout << "SPEAKER:[ CPR TOO HEAVY ]"<< endl;
+}
+void AEDSpeaker::CPRGood() {
+    cout << "SPEAKER:[ CPR GOOD ]"<< endl;
+}

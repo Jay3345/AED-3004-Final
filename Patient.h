@@ -14,6 +14,8 @@ public:
     int getHeartRhythm() const;       // Check if patient's heartRhythm
     bool getIsResponsive() const;  // Check if patient is responsive
     bool getShockResult() const; // Check if shock result is available
+    int getCurrentCPRDepth() const;
+
 
 
     //setters
@@ -21,12 +23,15 @@ public:
     void setHeartRhythm(int value);         // Set patient's heartRhythm
     void setResponsive(bool value);    // Set responsive status
     void setShockResult(bool value);   // Set shock result status
+    void setCurrentCPRDepth(int value);
 
 private:
     bool isHairy;
     int heartRhythm;
     bool isResponsive;
     bool shockResult;
+
+    int currentCPRDepth;
 
 };
 

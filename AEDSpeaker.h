@@ -10,6 +10,10 @@ public:
     void analyzingHeartRhythm();
     void shockAdvisedWarning();
 
+    void CPRHeavyWarning();
+    void CPRLightWarning();
+    void CPRGood();
+
 private:
 };
 
