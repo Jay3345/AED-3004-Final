@@ -14,6 +14,7 @@ Keegan Ramjit, KeeganRamjit@cmail.carleton.ca
 - Use cases 2,3
 - AED Speaker Class
 - Traceability Matrix
+- Updated UML Diagram
   
 Rafeed Nazmul, RAFEEDBINNAZMUL@cmail.carleton.ca
 - Use cases 4-8
