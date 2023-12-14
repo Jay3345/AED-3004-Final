@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include "Patient.h"
 
+
 class User : public QObject  {
     Q_OBJECT
 

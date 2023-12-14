@@ -36,6 +36,7 @@ void User::performCPR() {
 
         if(currentGoodCompressions==20){
             emit updateAED("CPR Complete");
+            continueEvaluation();
         }else{
             emit updateCPRStatus("Good");
         }
